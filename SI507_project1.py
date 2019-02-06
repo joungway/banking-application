@@ -36,10 +36,17 @@ def showpound(value): # Check this out -- what's going on here? A useful pattern
     ins_pound=Pound(int(value))
     return "{} {}".format(ins_pound.value,"Pound" + "s" * (ins_pound.value > 1))
 
-@app.route('/bank/<name>/<unit>/<value>')
-def message(name, unit, value):
-    ins_message=Bank(name,unit,value)
-    return 'Welcome to the {} bank! {} Bank holds the {} currency and currently holds {} of {}.'.format(ins_message.name,ins_message.name,ins_message.unit,ins_message.value,ins_message.unit)
+@app.route('/bank/<name>/<currency>/<value>')
+def message(name, currency, value):
+    if currency =="dollar":
+        ins_message=Bank(name,currency,int(value))
+        return 'Welcome to the {} bank! {}'.format(ins_message.name,ins_message.__str__())
+    elif currency == "pound":
+        ins_information =  Bank(name, currency, int(value))
+        return 'Welcome to the {} bank! {}'.format(ins_information.name, ins_information.__str__())
+    elif currency == "yuan":
+        ins_information = Bank(name, currency, int(value))
+        return 'Welcome to the {} bank! {}'.format(ins_information.name, ins_information.__str__())
 
 
 if __name__ == '__main__':
